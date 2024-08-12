@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	Val  int
@@ -9,7 +11,6 @@ type Node struct {
 
 type LinkedList struct {
 	Node *Node
-	Tail *Node
 }
 
 func (ll *LinkedList) add(i int) {
@@ -20,12 +21,33 @@ func (ll *LinkedList) add(i int) {
 
 	if ll.Node == nil {
 		ll.Node = newNode
-		ll.Tail = newNode
 		return
 	}
 
-	ll.Tail.Next = newNode
-	ll.Tail = newNode
+	current := ll.Node
+	for current != nil {
+		if current.Next == nil {
+			break
+		}
+		current = current.Next
+	}
+	current.Next = newNode
+}
+
+func (ll *LinkedList) remove(i int) {
+	current := ll.Node
+	if current.Val == i {
+		ll.Node = current.Next
+		return
+	}
+
+	for current != nil {
+		if current.Next.Val == i {
+			current.Next = current.Next.Next
+			return
+		}
+		current = current.Next
+	}
 }
 
 func main() {
@@ -34,4 +56,6 @@ func main() {
 	ll.add(2)
 	ll.add(3)
 	fmt.Println(ll.Node.Val, ll.Node.Next.Val, ll.Node.Next.Next.Val)
+	ll.remove(2)
+	fmt.Println(ll.Node, ll.Node.Next, ll.Node.Next.Next)
 }
