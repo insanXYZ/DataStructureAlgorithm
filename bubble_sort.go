@@ -9,7 +9,7 @@ func main() {
 	for i := l; i > 0; i-- {
 		values = append(values, i)
 	}
-
+	fmt.Println("before =", values)
 	var count int
 
 	// for i := 1; i < l; i++ {
@@ -34,7 +34,7 @@ func main() {
 		count++
 	}
 
-	fmt.Println(values)
+	fmt.Println("after =", values)
 	fmt.Println("Operations =", count)
 
 }
