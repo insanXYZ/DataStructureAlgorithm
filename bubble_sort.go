@@ -1,40 +1,66 @@
 package main
 
-import "fmt"
+import (
+	"data_structures_algorithm/utils"
+	"fmt"
+)
 
 func main() {
-	l := 300
+	data := []int{5, 4, 3, 2, 1}
+	BubbleSortLowestToHigh(data)
+	fmt.Println(data)
 
-	var values []int
-	for i := l; i > 0; i-- {
-		values = append(values, i)
-	}
-	fmt.Println("before =", values)
-	var count int
+	BubbleSortHighestToLow(data)
+	fmt.Println(data)
 
-	// for i := 1; i < l; i++ {
-	// 	for j := 0; j < l-i; j++ {
-	// 		count++
-	// 		if values[j] > values[j+1] {
-	// 			values[j], values[j+1] = values[j+1], values[j]
-	// 			count++
-	// 		}
-	// 	}
-	// 	count++
-	// }
+	BubbleSortImprovement(data)
+	fmt.Println(data)
+}
 
-	for i := range l - 1 {
-		for j := range l - i - 1 {
-			count++
-			if values[j] > values[j+1] {
-				values[j], values[j+1] = values[j+1], values[j]
-				count++
+func BubbleSortLowestToHigh(arr []int) {
+	defer utils.Timer("Bubble Sort Lowest To High")
+	l := len(arr)
+
+	for i := 0; i < (l - 1); i++ {
+		for j := 0; j < (l - i - 1); j++ {
+			if arr[j] > arr[j+1] {
+				arr[j], arr[j+1] = arr[j+1], arr[j]
 			}
 		}
-		count++
 	}
+}
 
-	fmt.Println("after =", values)
-	fmt.Println("Operations =", count)
+func BubbleSortHighestToLow(arr []int) {
+	defer utils.Timer("Bubble Sort Highest To Low")
+	l := len(arr)
+
+	for i := 0; i < (l - 1); i++ {
+		for j := 0; j < (l - i - 1); j++ {
+			if arr[j] < arr[j+1] {
+				arr[j], arr[j+1] = arr[j+1], arr[j]
+			}
+		}
+	}
+}
+
+// in this function like Lowest to high, but adding brake expression
+// you can see the explanation on https://www.w3schools.com/dsa/dsa_algo_bubblesort.php
+func BubbleSortImprovement(arr []int) {
+	defer utils.Timer("Bubble Sort Improvement")
+	l := len(arr)
+
+	for i := 0; i < (l - 1); i++ {
+		Swapped := false
+		for j := 0; j < (l - i - 1); j++ {
+			if arr[j] > arr[j+1] {
+				arr[j], arr[j+1] = arr[j+1], arr[j]
+				Swapped = true
+			}
+		}
+
+		if !Swapped {
+			break
+		}
+	}
 
 }
