@@ -1,31 +1,21 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	l := 5
+	arr := []int{5, 4, 3, 2, 1}
+	SelectionSort(arr)
+	fmt.Println(arr)
+}
 
-	var values []int
-	for i := l; i > 0; i-- {
-		values = append(values, i)
-	}
-
-	fmt.Println("before =", values)
-	var count int
-
-	for i := 0; i < len(values)-1; i++ {
-		minI := i
-		for j := i + 1; j < len(values); j++ {
-			if values[j] < values[minI] {
-				minI = j
+func SelectionSort(arr []int) {
+	for i := 0; i < len(arr); i++ {
+		min_index := i
+		for j := 0 + i; j < len(arr); j++ {
+			if arr[j] < arr[min_index] {
+				min_index = j
 			}
 		}
-		values[i], values[minI] = values[minI], values[i]
+		arr[i], arr[min_index] = arr[min_index], arr[i]
 	}
-
-	fmt.Println("after =", values)
-	fmt.Println(count)
-
 }
