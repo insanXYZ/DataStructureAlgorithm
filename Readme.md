@@ -1,1 +1,1 @@
-This repository is used for learning algorithm structure data using Golang, this material is prepared based on the roadmap available at [roadmap.sh/datastructures-and-algorithms](https://roadmap.sh/datastructures-and-algorithms)
+This repository is used for learning data structure algorithm using Golang.
